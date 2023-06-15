@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+			<meta charset="utf-8" />
+			<link rel="stylesheet" href="style.css" />
+			<title>Anime</title>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		</head>
+		
+		<body>
+		  <header id="container">
+	<nav class="navbar">
+	<a href="index.html" class="index_html"><img src="images/logo.png" alt="logo de la page"/></a>
+	<div class="nav-links">
+		<ul>
+			<li><a id="index" class="pagecourante" href="index.html">Accueil</a></li>
+			<li><a id="catégories" href="Catégories.html">Catégories</a></li>
+			<li><a id="blog" href="Blog.html">Blog</a></li>
+			<li><a id="contact" href="Contact.html">Contact</a></li>
+			<li><a id="connexion" href="Connexion.html">Connexion</a></li>
+	  </ul>
+	</div>
+	</nav>
+	</header>
+			
+			  <img class="breadcrumb" src="images/breadcrumb.jpg" alt="bannière de la page"/>
+			  <h1 id="détails_1">Tout sur votre manga !</h1>
+			  <button id="PRECEDENT" class="Lien_EP"><span class="icône-flèche-cercle-gauche"></span>PRECEDENT</button>
+        <button id="SUIVANT" class="Lien_EP">SUIVANT<span class="icône-flèche-cercle-droite"></span></button>
+			  <a class="Lien_EP" href="boruto_EP_225.html"><h4 class="dernier episode" id="D_episode"><span class="icon-arrow-circle-down"></span>DERNIER EPISODE</h4></a>
+			  
+		  <div>
+			  <select id="selection_LECTEUR" onChange="location.href=''+this.options[this.selectedIndex].value+'.html';">
+			    <option>LECTEUR 1</option>
+		      <option>LECTEUR 2</option>
+		      <option>LECTEUR 3</option>
+			  </select>
+      </div>
+      
+      
+      
+      
+      
+		  
+		  
+		  <div>
+		    <select id="selection_EP"></select>
+      </div>
+<div id="videoContainer">
+  <iframe id="video_EP" width="790" height="540" frameborder="0" allowfullscreen="true" webkitallowfullscreen="true" allowScriptAccess="always" mozallowfullscreen="true" allow="encrypted-media"></iframe>
+</div>
+
+<script>
+$(document).ready(function(){
+  var videoLinks = [
+    'https://www.myvi.top/embed/d66snwgey9mr9bxfuxu4i8rkec',
+    'https://www.myvi.top/embed/7oqyr63ioywr7p1r97zp34m5yw',
+    'https://www.myvi.top/embed/y56k5en3r5oricqqn3fd4pop8a',
+    'https://www.myvi.top/embed/u73hhyw9wu4r8kexap49opmqhc',
+    'https://www.myvi.top/embed/bzz9ak1t19jwxqtaos7nn7ju6y',
+    'https://video.sibnet.ru/shell.php?videoid=4695908',
+    'https://video.sibnet.ru/shell.php?videoid=4695910',
+    'https://video.sibnet.ru/shell.php?videoid=4695911',
+    'https://video.sibnet.ru/shell.php?videoid=4695912',
+    'https://www.myvi.top/embed/5owo8w7j43uw7b7fyh8ecma88e',
+    'https://www.myvi.top/embed/wjymp3o81p1rbqjonusx4j9o6e',
+    'https://www.myvi.top/embed/7oakj1raikiwzm6zyp9j8j7bao',
+    'https://www.myvi.top/embed/x9u6rkwbawprpfnkdnnen87n6w',
+    'https://www.myvi.top/embed/1daq7gp9bahrzcdwxwzkai619e',
+    'https://www.myvi.top/embed/b4167mwyqo1r8mzp4jxowbqeao',
+    'https://www.myvi.top/embed/x5z6fhqbg3dwdqbgk3h6grhscr',
+    'https://www.myvi.top/embed/nybpi6rwpfrw7q8htwr6yrd9sa',
+    'https://www.myvi.top/embed/7wum5rq3146rtfsj33sqh3hseh',
+    'https://www.myvi.top/embed/y5yusj6umnqrd8rkozdy6mtsjy',
+    'https://www.myvi.top/embed/1oriohr98zxwjbhohwoe3uqw4a',
+    'https://www.myvi.top/embed/zaffsyk11rbrxktj6z835t1cch',
+    'https://www.myvi.top/embed/ubk8hb4qzhprun44bmnxz47byw',
+    'https://video.sibnet.ru/shell.php?videoid=4695914',
+    'https://video.sibnet.ru/shell.php?videoid=4695881',
+    'https://video.sibnet.ru/shell.php?videoid=4695884',
+    'https://video.sibnet.ru/shell.php?videoid=4695886',
+    'https://video.sibnet.ru/shell.php?videoid=4695887',
+    'https://www.myvi.top/embed/gdsf69c1cucwt81dsrtsxy34ko',
+    'https://www.myvi.top/embed/tb47n1mseq1wpxzdpmffe86h3o',
+    'https://www.myvi.top/embed/xroja4j7t4or8rg8ga1maawmre',
+    'https://www.myvi.top/embed/d74qie7oc6sr3dcaf98s1nqmsa',
+    'https://www.myvi.top/embed/835q71zpt1erunt4765g15awiy',
+    'https://www.myvi.top/embed/hq4ncwfg713wdnwmsb93zihr7o',
+    'https://www.myvi.top/embed/715o38ehkthwuq9f7gp75bcf7a',
+    'https://www.myvi.top/embed/g17jdq1ow16wuyda3sx6n949cy',
+    'https://video.sibnet.ru/shell.php?videoid=4695888',
+    'https://www.myvi.top/embed/9zrrfxumhriw98kka64e89z69y',
+    'https://www.myvi.top/embed/oso58aduurer8ptqpmujbns1xw',
+    'https://www.myvi.top/embed/u6emf4r4jdqw3e91ebsq9q5pbc',
+    'https://www.myvi.top/embed/7a3sg6wuentr9ju77q78j36zja',
+    'https://video.sibnet.ru/shell.php?videoid=4695890',
+    'https://video.sibnet.ru/shell.php?videoid=4695892',
+    'https://www.myvi.top/embed/3731bweq79dr8mwny1d1trhnsh',
+    'https://www.myvi.top/embed/h4icye8y8y8rpeu3csqc7nt8uw',
+    'https://www.myvi.top/embed/77cct91shz6r5y98ff9gxazk4a',
+    'https://www.myvi.top/embed/kz3akbqxa4yrpx5fnn6n7xsnhc',
+    'https://www.myvi.top/embed/s3szmtjcmjzwue6uo9nju71csw',
+    'https://www.myvi.top/embed/ctjqxms4xswwzfdn43rkfgh4bo',
+    'https://video.sibnet.ru/shell.php?videoid=4695894',
+    'https://www.myvi.top/embed/3x1t41n15nqrfgd81cbywpt9gr',
+    'https://video.sibnet.ru/shell.php?videoid=4926466',
+    'https://www.myvi.top/embed/8i36zexzhdzr5qhbwny9cnr18o',
+    'https://video.sibnet.ru/shell.php?videoid=4926468',
+    'https://www.myvi.top/embed/efn71s6oapnrdexs9hp545bdtc',
+    'https://www.myvi.tv/embed/zw5nxxm7mfbwufbjsdoafp8nwa',
+    'https://www.myvi.top/embed/soa8yjtcyeuriqtssocnnwfpfc',
+    'https://video.sibnet.ru/shell.php?videoid=5027062',
+    'https://www.myvi.top/embed/uyqh9hs6x8cw8fqh8dw4cip7xy',
+    'https://video.sibnet.ru/shell.php?videoid=5027061',
+    'https://www.myvi.top/embed/1izrbyhkserwucmyji8u5f394o',
+    'https://www.myvi.top/embed/uqch7i9ae1cr3bfau9dujjqnwh',
+    'https://www.myvi.top/embed/rxoz9gznksqwjcpujka9fdg8mw',
+    'https://www.myvi.top/embed/gh7jirb7whpw5ppf6qm1gcw1ka',
+    'https://www.myvi.top/embed/4hmxp88zrqsrpyfa1coh147pro',
+    'https://www.myvi.top/embed/t9jsei69nzhwzrcba7kw3prerh',
+    'https://www.myvi.top/embed/qmidxkdfqnnricbu8os57z8fso',
+    'https://www.myvi.top/embed/34fbrbsbpifribog3kzmpmyz5e',
+    'https://www.myvi.top/embed/rtzshsb85b7r7ew5xd5rzor4ko',
+    'https://www.myvi.top/embed/yfuwksdb67br7p9zj9rsru583c',
+    'https://www.myvi.top/embed/bbzxkiep3x8rif19otmii6pg6e',
+    'https://video.sibnet.ru/shell.php?videoid=4695902',
+    'https://www.myvi.top/embed/j6gkicj8wniwbpu7wargnmzfbc',
+    'https://video.sibnet.ru/shell.php?videoid=4695522',
+    'https://www.myvi.top/embed/qj3pkmm9wa9wmxuj39dcxb4x8h',
+    'https://www.myvi.top/embed/tgz1q14xd1grfmnss9yxubi4jw',
+    'https://www.myvi.top/embed/wsj97im6egmr38iq75md1hdtky',
+    'https://www.myvi.top/embed/tqeb5f6345rrmfqubcaohutgay',
+    'https://www.myvi.top/embed/e8d3jn7asdnrmn7bys8gkumdho',
+    'https://www.myvi.top/embed/uo8ebzijxyjrxpqmkfpuaf5nmh',
+    'https://www.myvi.top/embed/p36cpd6f6tjwxgropc3d5uaz3r',
+    'https://www.myvi.top/embed/4ya4yjn4x5nwbkz3oee4aoxdga',
+    'https://www.myvi.top/embed/fse68m3zn7wrdpfbys9x3mcaza',
+    'https://www.myvi.top/embed/3osfqrmom34rzjedzidue63pho',
+    'https://www.myvi.top/embed/smb4simw69xwbrypge9n5qc73r',
+    'https://www.myvi.top/embed/iy5mbbk3txtrpy6pdqexmxs4xw',
+    'https://www.myvi.top/embed/5jzm1br9r1dwxy7aqgf4y4ifcw',
+    'https://www.myvi.top/embed/361jgtgwnxtw9rejwbi1k1ptwy',
+    'https://www.myvi.top/embed/o4jzxtbdwk5r3nz4cuch5jejuw',
+    'https://www.myvi.top/embed/xo76inuhmpxrbcohqesnb6w7pw',
+    'https://video.sibnet.ru/shell.php?videoid=4695528',
+    'https://video.sibnet.ru/shell.php?videoid=4695529',
+    'https://www.myvi.top/embed/npr5ixdktkrrmnf3bo7mcwru6a',
+    'https://www.myvi.top/embed/we6f1oa4umswixr7ymc4376sqe',
+    'https://www.myvi.top/embed/c9q54qpyazkrmjkfzteapkfuqy',
+    'https://www.myvi.top/embed/hawrnjhpdihrmf5yxwac4kt1ew',
+    'https://www.myvi.top/embed/6ymxx5o857pw9guwmuiirxim5r',
+    'https://www.myvi.top/embed/qhuoe45c1t7r5xgu6jytdwj97o',
+    'https://www.myvi.top/embed/qzywen3k9s7rzdsss4y5n3ua7r',
+    'https://video.sibnet.ru/shell.php?videoid=4695531',
+    'https://video.sibnet.ru/shell.php?videoid=5046969',
+    'https://video.sibnet.ru/shell.php?videoid=4695533',
+    'https://www.myvi.top/embed/ntpayjxciqdw5gnjhwp58jnaxe',
+    'https://video.sibnet.ru/shell.php?videoid=4695536',
+    'https://video.sibnet.ru/shell.php?videoid=4695537',
+    'https://www.myvi.top/embed/fxrk9b6uaw6wpq8cu6tzrefxar',
+    'https://www.myvi.top/embed/q5i7ps77dd5w5ptqyxb4nkximr',
+    'https://video.sibnet.ru/shell.php?videoid=4695538',
+    'https://video.sibnet.ru/shell.php?videoid=4695539',
+    'https://video.sibnet.ru/shell.php?videoid=4695541',
+    'https://www.myvi.top/embed/pbdimdhmemhrubou4aq7bq33po',
+    'https://www.myvi.top/embed/5wfsndqgx6pr3kcjz9sqdm7w1c',
+    'https://www.myvi.top/embed/6hfug88bgzfrmemkr4bzrqq7no',
+    'https://www.myvi.top/embed/tgmupsneia6rufcuzm4ud73byc',
+    'https://www.myvi.top/embed/isqhxho9pghr7jxoohhg1zw4ir',
+    'https://www.myvi.top/embed/q5qrzsrqufowprxpnxtrh6fn4r',
+    'https://www.myvi.top/embed/onktnb867bcr3femhd68ch5y9o',
+    'https://www.myvi.top/embed/ufaooswg9afrxki78cr8x41xtw',
+    'https://www.myvi.top/embed/pf1fucfgo1cw5f3nuaakor3raa',
+    'https://www.myvi.top/embed/5pdx77bbnm4wdbz1bhnhyiistr',
+    'https://www.myvi.top/embed/wmq585gxkujw9dzwbdautujqmc',
+    'https://www.myvi.top/embed/5oedih9jyzowjj9pyfeds3qg9c',
+    'https://www.myvi.top/embed/uctckduye9pwdcnkhxy4em75ko',
+    'https://video.sibnet.ru/shell.php?videoid=4695542',
+    'https://video.sibnet.ru/shell.php?videoid=4695543',
+    'https://video.sibnet.ru/shell.php?videoid=5093167',
+    'https://www.myvi.top/embed/u5ujhwd6ufrwjf7neupb4xraja',
+    'https://video.sibnet.ru/shell.php?videoid=4695546',
+    'https://video.sibnet.ru/shell.php?videoid=4695548',
+    'https://www.myvi.top/embed/eojf3px8fx8r5gkk3qzsskjhye',
+    'https://www.myvi.top/embed/jpcbrfqo4o5rid6cxufeo3tmao',
+    'https://www.myvi.top/embed/wj9dmbnmazkw3jrmki7r57bzrr',
+    'https://www.myvi.top/embed/an9cuau6kuor584z7q6bjk5i8r',
+    'https://www.myvi.top/embed/cx7p5eiqawdwpnam6rezotmege',
+    'https://www.myvi.top/embed/5dajai8hsg3wtbumtdx6hh3hba',
+    'https://www.myvi.top/embed/m4qt5e745f1wjemerozhfzi8uo',
+    'https://video.sibnet.ru/shell.php?videoid=4695549',
+    'https://www.myvi.top/embed/ocdi64eu8sjrid8no6zcetxo3w',
+    'https://www.myvi.top/embed/rudex69cg5pr5rck8z7hhghriy',
+    'https://www.myvi.top/embed/6o5i7wx7yymwddk7tp11epehmy',
+    'https://video.sibnet.ru/shell.php?videoid=4695550',
+    'https://video.sibnet.ru/shell.php?videoid=4695552',
+    'https://video.sibnet.ru/shell.php?videoid=4695553',
+    'https://www.myvi.top/embed/fc58ff5c1mpriqsfdcrwiq557h',
+    'https://www.myvi.top/embed/9wihopjdbbkwmkq1ojmicg9pia',
+    'https://www.myvi.top/embed/yc5ey137dpbrdggibjothw93na',
+    'https://www.myvi.top/embed/jekj3863ofhwbrefgwzddfwxrc',
+    'https://www.myvi.top/embed/4j7q8w8q1bzwukxy1mficx67oa',
+    'https://www.myvi.top/embed/shm3gdg4bquw9fq7h3ndct4nca',
+    'https://www.myvi.top/embed/obwezo97qf1wm8oqkmt5sbz7pe',
+    'https://www.myvi.top/embed/ts4hytt453cr3qrwi3etq9n8wr',
+    'https://www.myvi.top/embed/4995sm7w7sqwuchpdc85mnawer',
+    'https://www.myvi.top/embed/bqkzzxnyiqrrdd7kumpswjckfe',
+    'https://www.myvi.top/embed/i656npy6ypir8ewfm3ohgbf5sy',
+    'https://video.sibnet.ru/shell.php?videoid=4695554',
+    'https://video.sibnet.ru/shell.php?videoid=4695555',
+    'https://www.myvi.top/embed/fx37mrxasterpbpa56er3m9ydo',
+    'https://www.myvi.top/embed/fp5ig3t3jmmrbjoa97hs718ihr',
+    'https://www.myvi.top/embed/akkpicjb65yrtg7nk5ymbq6iiy',
+    'https://www.myvi.top/embed/mcggx1mrjfkr5c83jodtdrt3kr',
+    'https://www.myvi.top/embed/iy543hzwghhwdbc19rgcm346no',
+    'https://www.myvi.top/embed/kh48a6noom1rbczafxskark6jo',
+    'https://www.myvi.top/embed/bju4gqeanwawddsqqfmyszpypw',
+    'https://www.myvi.top/embed/w7xircu3kd9ricn6r6bqaj1iba',
+    'https://video.sibnet.ru/shell.php?videoid=4933318',
+    'https://www.myvi.top/embed/1dzaksgx6paricb7wuo55pcp3h',
+    'https://www.myvi.top/embed/wmgcqw6rf31w7fspoet1peowta',
+    'https://www.myvi.top/embed/y9jxjxpqt8prtyr3fz993x1rke',
+    'https://video.sibnet.ru/shell.php?videoid=4695557',
+    'https://video.sibnet.ru/shell.php?videoid=4695558',
+    'https://www.myvi.top/embed/xypkk7scidxr8864kjjpink48a',
+    'https://www.myvi.top/embed/nywznt4efrardkjzndo4mq49qo',
+    'https://www.myvi.top/embed/gjtdkf9w8ekwxyu1ne6zta69ja',
+    'https://www.myvi.top/embed/rjuguggecjnr3qhctc8jhiwgwy',
+    'https://www.myvi.top/embed/md8jqtxetk1wmeye4b6g3ihsuh',
+    'https://www.myvi.top/embed/tkrjet571kpwxffrhpm9xi3rtw',
+    'https://www.myvi.top/embed/uge78mam4giwxf5dttpytoi9xe',
+    'https://www.myvi.top/embed/aqm3gd7qjq6w7n6gx69sdhnbec',
+    'https://www.myvi.top/embed/zfkq4rodaofr3e8sqpwc6r3azc',
+    'https://www.myvi.top/embed/zi9zon99frprznmnmjhg9w6k4h',
+    'https://www.myvi.top/embed/b5iuz7ka7germqaom68nfaxg4o',
+    'https://www.myvi.top/embed/5ghbyn8351krtyqahk4ygqdcmw',
+    'https://www.myvi.top/embed/eujybj38nxhr8kexcenkgux69o',
+    'https://www.myvi.top/embed/41gp597nc1xrx8cbgywjc5wx6w',
+    'https://video.sibnet.ru/shell.php?videoid=4695596',//184
+    'https://video.sibnet.ru/shell.php?videoid=4695560',
+    'https://www.myvi.top/embed/jd8qn5xrmjfwjbiy3onw4hiuao',
+    'https://www.myvi.top/embed/etdg5h1d8whw3mirppe4ej5fnr',
+    'https://www.myvi.top/embed/wbpp3sjjjyow7nj3s9jipb9ibc',
+    'https://www.myvi.top/embed/jx7btix9i39wufwrc5zfr5e7uw',
+    'https://www.myvi.top/embed/ek4rq983bu9wdywu78wdm3p6kw',
+    'https://www.myvi.top/embed/nbx5geurjqnwunze51gwup1ide',
+    'https://www.myvi.top/embed/hqyk5bifobbrbbghfang5e6mey',
+    'https://www.myvi.top/embed/w7xg3gqcpbdr5jwn9ju45qh38o',
+    'https://www.myvi.top/embed/85w8jot5nqowxq5uaqzjm7wepe',
+    'https://www.myvi.top/embed/casjeo39c4rrbp3z4aywd51xnh',
+    'https://www.myvi.top/embed/fxj5h6i8xpkw7nmwrqb6ckw9ja',
+    'https://www.myvi.top/embed/hex11mboq9owuk4n8dua4sciyy',
+    'https://video.sibnet.ru/shell.php?videoid=4695562',
+    'https://www.myvi.top/embed/mgmjt6qdjuwrirh3mwkugtxcjy',
+    'https://video.sibnet.ru/shell.php?videoid=4695564',
+    'https://www.myvi.top/embed/o8rao8p7dyar8qfewsejbtqb3c',
+    'https://www.myvi.top/embed/1kp1jd3ag5nrieex7p8f51dgty',
+    'https://www.myvi.top/embed/ymzjiygkd8hwjj156e5a6jedaw',
+    'https://www.myvi.top/embed/dh7xdx1n8urrigbywbfpmxuxdr',
+    'https://www.myvi.top/embed/dc987m5sac4rzrt69i9knmto6e',
+    'https://www.myvi.top/embed/8fbqnagg88sr3dfbiw6org7rsh',
+    'https://www.myvi.top/embed/moegxreabqyw3cqrmckeuz9ara',
+    'https://www.myvi.top/embed/izfb9qz1uifrjbwrqd6ciytdaa',
+    'https://www.myvi.top/embed/rbi8zinszdorp8cdmm9s5o96ya',
+    'https://video.sibnet.ru/shell.php?videoid=4695565',
+    'https://www.myvi.top/embed/dg1pte6gghdwixzwcrdxg68g5e',
+    'https://www.myvi.top/embed/dw4qc6qp6x4wmckhxkmhppx31r',
+    'https://www.myvi.top/embed/ksuru8a53jkrjdtafehrbrznwy',
+    'https://www.myvi.top/embed/ssfmofm83gjr5pkmborbcranqw',
+    'https://video.sibnet.ru/shell.php?videoid=5045971',
+    'https://www.myvi.top/embed/6jgxm8jtfmcruk7u813s1c1yoa',
+    'https://www.myvi.top/embed/x88e7s7eqybw7jwfgw7eaa8g6r',
+    'https://www.myvi.top/embed/sjp6mtmq8yrrtf93caquhompoa',
+    'https://www.myvi.top/embed/gccbrnkowgyr5rkdocrfattm3o',
+    'https://www.myvi.top/embed/o4za6rqwwwarp8ztp8sbxkgt9r',
+    'https://www.myvi.top/embed/bofhswkrxemwxmky5j6mtym6ry',
+    'https://www.myvi.top/embed/ngwzdrsdrjxrbegzjocsipmb6r',
+    'https://www.myvi.top/embed/wwhci5ki936wm8yzxx6ukdzjmh',
+    'https://www.myvi.top/embed/19eb185kdyprjkakch64e35zrr',
+    'https://www.myvi.top/embed/s6uzoygazs5wuemdhrqwtxfzjo',
+    'https://video.sibnet.ru/shell.php?videoid=5045972',
+    'https://video.sibnet.ru/shell.php?videoid=5045973',
+    'https://www.myvi.top/embed/wd1uqgxbhemwfb5436f6hqs8ne',
+    'https://video.sibnet.ru/shell.php?videoid=4695567',
+    'https://video.sibnet.ru/shell.php?videoid=4695569',
+    'https://www.myvi.top/embed/j43hcayj7dkr8rfppaz8gg3kca',
+    'https://video.sibnet.ru/shell.php?videoid=4695571',
+    'https://video.sibnet.ru/shell.php?videoid=4695573',
+    'https://www.myvi.top/embed/ydk7ouy7iqgr9q5ujm476jxhso',
+    'https://www.myvi.top/embed/cr6971tkta8wmkzf8tgngicu5r',
+    'https://www.myvi.top/embed/77oo8pahc7jwpq7akm3h6o5uio',
+    'https://video.sibnet.ru/shell.php?videoid=5045974',
+    'https://www.myvi.top/embed/sqwo91yzz43rijfjmdtu8sow9c',
+    'https://video.sibnet.ru/shell.php?videoid=4695574',
+    'https://video.sibnet.ru/shell.php?videoid=4695577',
+    'https://www.myvi.top/embed/ctugqocq4bbw5r7dz87di4m6ir',
+    'https://video.sibnet.ru/shell.php?videoid=4695579',
+    'https://video.sibnet.ru/shell.php?videoid=5045975',
+    'https://www.myvi.top/embed/w4o78z8t9urwmkt9b5recabpxo',
+    'https://www.myvi.top/embed/8zreawi9ro9wurquntcwxh44ar',
+    'https://www.myvi.top/embed/smbnq5rzswrrpgyhjgc1ou674c',
+    'https://www.myvi.top/embed/gugmjdx8y4nrxjoftxgh1x3fda',
+    'https://video.sibnet.ru/shell.php?videoid=4695580',
+    'https://video.sibnet.ru/shell.php?videoid=4695581',
+    'https://www.myvi.top/embed/jtah6dz8d6nrzg76i83ed9uhjy',
+    'https://www.myvi.top/embed/so8c11m4urmwfm7eeixmhorbsc',
+    'https://www.myvi.top/embed/84qpsmmpuw5rmjkpz9q9ugzk6r',
+    'https://www.myvi.top/embed/kqr5witxfz4wdp4odociy7wsky',
+    'https://www.myvi.top/embed/98bsfxrdfufrdcb5r8q65fb7pc',
+    'https://www.myvi.top/embed/tc5ny5hg6k7wxrd6ckb8ecqk8e',
+    'https://video.sibnet.ru/shell.php?videoid=4695582',
+    'https://www.myvi.top/embed/y3geqeuud9cricw6q6e3wf7bah',
+    'https://www.myvi.top/embed/x43f7i15bobwtmppqabb6y643o',
+    'https://www.myvi.top/embed/se8i6hcj9n8w9buowxc97bqewh',
+    'https://www.myvi.top/embed/c39jyhf4dmcrjfe64gebkwbzww',
+    'https://www.myvi.top/embed/g4gdcs8y7f4wbm5zyqhbxknw6o',
+    'https://www.myvi.top/embed/dzcwx3wd4p9wpekq4kz3yws45w',
+    'https://www.myvi.top/embed/p9orw5s3g9cw9eej9pxcwxwptr',
+    'https://video.sibnet.ru/shell.php?videoid=4695585',
+    'https://www.myvi.top/embed/o785ry49i3qwpbzeo3u9nz6syh',
+    'https://www.myvi.top/embed/bhxnxnr8n1rrdmgk7jh6six4te',
+    'https://www.myvi.top/embed/rojyiogry7crpfwtnt4cwx7kwr',
+    'https://www.myvi.top/embed/zh4t9i6ennfrmmd3h97yrapyjo',
+    'https://www.myvi.top/embed/xr4nsrcpwtkw3r1fbzkpn34emw',
+    'https://www.myvi.top/embed/h8ygh9fe7jormc7aukjtssi8jc',
+    'https://www.myvi.top/embed/by4q6wotq73r3x5hk64b6n9tte',
+    'https://www.myvi.top/embed/rhmdtm9t5s7w9dua3upfoi9uha',
+    'https://video.sibnet.ru/shell.php?videoid=4695586',
+    'https://video.sibnet.ru/shell.php?videoid=4695587',
+    'https://video.sibnet.ru/shell.php?videoid=4695589',
+    'https://video.sibnet.ru/shell.php?videoid=4933328',
+    'https://www.myvi.top/embed/q7944d36b44w9funfkswrfmjpe',
+    'https://www.myvi.top/embed/4c16wk9d6cyruxrio1hwfyj3dh',
+    'https://video.sibnet.ru/shell.php?videoid=5045976',
+    'https://video.sibnet.ru/shell.php?videoid=5045977',
+    'https://video.sibnet.ru/shell.php?videoid=5045978',
+    'https://www.myvi.top/embed/uwf356xqm5brfekyniksz1b6py',
+    'https://www.myvi.top/embed/p1jkbkiedi1wuj3stkkjya51ze',
+    'https://www.myvi.top/embed/6bhefxammaqwbfpot15hj9gegc',
+    'https://www.myvi.top/embed/wt3yx9jemgsrxbh8pqo65yx6sy',
+    'https://www.myvi.top/embed/fra6yjyy464wmqwsmj81yihf3c',
+    'https://www.myvi.top/embed/ugz1f6zeb6wwzmmgc9t57yqf6y',
+    'https://www.myvi.top/embed/ea5p8m1gxwprdeiwz69wcpywfc',
+    'https://video.sibnet.ru/shell.php?videoid=4695590',
+    'https://video.sibnet.ru/shell.php?videoid=4695591',
+    'https://www.myvi.top/embed/k6g1czq9kzjrzenaq8gx513yoa',
+    'https://www.myvi.top/embed/xxrw8uaqsw5r58dd596y5a43ic',
+    'https://www.myvi.top/embed/c757h3tm1yhrix9k6pcmugjxjh',
+    'https://www.myvi.top/embed/dnf3kmx416frjdkyiwmagjdqwy',
+    'https://www.myvi.top/embed/fphgz5iatiow5ceswpmfogei6h',
+    'https://www.myvi.top/embed/nhyq5fftczhwfgs9iudnir6pqh',
+    'https://www.myvi.top/embed/zrax3poxxrarud5d77qy7px5fa',
+    'https://www.myvi.top/embed/34iq7apomr6rurkdrhhegtiaor',
+    'https://www.myvi.top/embed/pzztkrewkfgwubezda97ogn5be',
+    'https://www.myvi.top/embed/zzocz9gb5gzribq8fw5x785r4r',
+    'https://video.sibnet.ru/shell.php?videoid=4933329',
+    'https://www.myvi.top/embed/d8rnpibsqcfrbfpjqm9phcjuaw',
+    'https://www.myvi.top/embed/i1iqrt9s4jkrdgaa5bfsiw5m5y',
+    'https://video.sibnet.ru/shell.php?videoid=5045979',
+    'https://www.myvi.top/embed/sbdstp5oofnrzp4qtzk595rwdh',
+    'https://video.sibnet.ru/shell.php?videoid=5045980',
+    'https://www.myvi.top/embed/meu6nfdxs5swugc5c3gcpkbw7h',
+    'https://www.myvi.top/embed/d7jcufrhe49rzgjwn41hqbjofr',
+    'https://video.sibnet.ru/shell.php?videoid=5046012',
+    'https://video.sibnet.ru/shell.php?videoid=5046013',
+    'https://www.myvi.top/embed/h39wbrsp6uxwbdryxynjtuofae',
+    'https://www.myvi.top/embed/daoi1ykmkoqw8cnyy9pex1xkac',
+    'https://www.myvi.top/embed/zwfycua38fswuyn4r9agcckd1h',
+    'https://www.myvi.top/embed/u4tjmhm3nrywpy1c3fcf17pyor',
+    'https://video.sibnet.ru/shell.php?videoid=5046015',
+    'https://www.myvi.top/embed/fb684tca9t7rzpcj66ho16txfy',
+    'https://www.myvi.top/embed/9r3eo8z1gz8rfqweaefyu35m4a',
+    'https://www.myvi.top/embed/47qndgpyrtdwzypswx8ewnc96h',
+    'https://www.myvi.top/embed/p353zwnd6fww5fhdyw1mis8dzy',
+    'https://video.sibnet.ru/shell.php?videoid=5046018',
+    'https://www.myvi.top/embed/zm9u7ww53eqr5pce5ras8gesho',
+    'https://www.myvi.top/embed/35pe65aya7bripqdtf6whh444c',
+    'https://www.myvi.top/embed/nawarponb4fw38ei56bxn4cegr',
+    'https://www.myvi.top/embed/7kur9edtwfur58e9zmx1jc6wrc',
+    'https://www.myvi.top/embed/ztdfbs9skbjwj89yufwhxea9jc',
+    'https://www.myvi.top/embed/uxgx39qbhturpjc9g9cjsq8gsw',
+    'https://www.myvi.top/embed/7sqekixu9acwbpnh5eyrk4hdbc',
+    'https://www.myvi.top/embed/u7tftwq7jmzr7kbba35166qoco',
+    'https://www.myvi.top/embed/u9zhtk8cxeqrtctuqjueqho3uc',
+    'https://www.myvi.top/embed/xo788jwi53pw7xkx6bmni5jpea',
+    'https://video.sibnet.ru/shell.php?videoid=5046051',
+    'https://video.sibnet.ru/shell.php?videoid=5046019',
+    'https://www.myvi.top/embed/bjwr1pj93shwijfbrbrxbf9z1e',
+    'https://www.myvi.top/embed/hq1k33w9676w5ru96t6dnpkhya',
+    'https://video.sibnet.ru/shell.php?videoid=4933331',
+    'https://video.sibnet.ru/shell.php?videoid=4933332',
+    'https://www.myvi.top/embed/tb4nhdhyhrqw5pm1cmgmy7mone',
+    'https://www.myvi.top/embed/u6x8kojuzu7wurqzzm85u8kpty',
+    'https://www.myvi.top/embed/w7czracrh9gr88joxqn38gygoh',
+    'https://www.myvi.top/embed/4akb9odn9icwuj85i8dt9396nw',
+    'https://www.myvi.top/embed/mmd4t4skrg5wbp13g6i14rdzsr',
+    'https://www.myvi.top/embed/khq7pk81dxtr9cyky6xpqqnqmc',
+    'https://www.myvi.top/embed/wpdu4g8opagrzj7fkkj8igkoxc',
+    'https://video.sibnet.ru/shell.php?videoid=4933334',
+    'https://www.myvi.top/embed/kcecjbxhtkgw98hf6pyk9m58sr',
+    'https://video.sibnet.ru/shell.php?videoid=5046020',
+    'https://www.myvi.top/embed/jy4utz4nqm9r8mhrakofrm8n9r',
+    'https://www.myvi.top/embed/oy19utdkhhkrzeym5o1s1zuanw',
+    'https://video.sibnet.ru/shell.php?videoid=5041173',
+    'https://www.myvi.top/embed/5spfn4t7z8nrudsgrfeupydcta',
+    'https://video.sibnet.ru/shell.php?videoid=5046022',
+    'https://www.myvi.top/embed/9xzaackejakwbn439sejgm4ura',
+    'https://www.myvi.top/embed/89xixzadmifr5cifaagqpzszso',
+    'https://www.myvi.top/embed/osgoutxfr5cwtnsucqbhnijnnc',
+    'https://www.myvi.top/embed/h5og34atwgmr9jm1ao9iibb4ea',
+    'https://www.myvi.top/embed/g6gmtrmb8k9wpc5aeg7ggie6er',
+    'https://www.myvi.top/embed/dkrp655ef61rzbxf8cebp8mfma',
+    'https://video.sibnet.ru/shell.php?videoid=5043240',
+    'https://video.sibnet.ru/shell.php?videoid=5043241',
+    'https://www.myvi.top/embed/9uf976ewbihrfk5cb4t6b5yuiw',
+    'https://www.myvi.top/embed/y4kwpetyfcmw8dqck7t9i7aquo',
+    'https://www.myvi.top/embed/xeze4akwr4urimwr4a7hmu4k8c',
+    'https://www.myvi.top/embed/ro6tnzjsy9fw9gdr1zpptqt63e',
+    'https://www.myvi.top/embed/ewp6a7xpxxsr5cbd5q8b1pa7eo',
+    'https://www.myvi.top/embed/y3p5d41xfgkwzm8gcifuxmg13h',
+    'https://www.myvi.top/embed/aksp6qacpiuw9p3asmu3waeamc',
+    'https://video.sibnet.ru/shell.php?videoid=4933336',
+    'https://video.sibnet.ru/shell.php?videoid=4933338',
+    'https://video.sibnet.ru/shell.php?videoid=4933341',
+    'https://www.myvi.top/embed/9mioe9bptoxwtjbedijuyhdy5a',
+    'https://www.myvi.top/embed/y8jcci68nfxwdptq4bsougmgpe',
+    'https://www.myvi.top/embed/sncth387hedwu8far5ods3o49w',
+    'https://video.sibnet.ru/shell.php?videoid=4933343',
+    'https://www.myvi.top/embed/8ukturyrnucwmd6fdn19pqupgo',
+    'https://www.myvi.top/embed/o9oic9zregir8dabc1n5offoic',
+    'https://www.myvi.top/embed/ka5bhaymccmrikzydsxfod5zqr',
+    'https://www.myvi.top/embed/qtzswdqcgqrwpdfdiquzpkqfye',
+    'https://www.myvi.top/embed/ndowat6m878r3faughxgmdci6c',
+    'https://www.myvi.top/embed/o5d7f4cydjrwmy8fohy4pp4z6o',
+    'https://video.sibnet.ru/shell.php?videoid=4933346',
+    'https://video.sibnet.ru/shell.php?videoid=4933350',
+    'https://video.sibnet.ru/shell.php?videoid=4933353',
+    'https://www.myvi.top/embed/d4jc1c63i3erimm3dfkk5iccty',
+    'https://www.myvi.top/embed/pckyotqjsz6w3jjmfebb7okqah',
+    'https://www.myvi.top/embed/ax7j8g449hhw5kenqcui1a75fc',
+    'https://www.myvi.top/embed/d6hncrhonbjwtxm35x9gi3k4ew',
+    'https://www.myvi.top/embed/njtcyradbc1wiqs345bbtmmctr',
+    'https://www.myvi.top/embed/8w4nmnty49jrbdb1dop7x8opbh',
+    'https://www.myvi.top/embed/wmw5it5dc5mwfqrrmg16o8xcpo',
+    'https://www.myvi.top/embed/41551hh3cyswujua86ani9euww',
+    'https://www.myvi.top/embed/a5hcmj8kp7frpngizoatzrjoza',
+    'https://www.myvi.top/embed/arg6w7qg4udw3fxnmznztye6eo',
+    'https://www.myvi.top/embed/rjz4ou85w4qw3pn8onak5444yy',
+    'https://www.myvi.top/embed/humc5iph4s9wixzi1kraq6rcgo',
+    'https://www.myvi.top/embed/zi8k1bom8dmr5jorynutxdjkxr',
+    'https://www.myvi.top/embed/wox6sdtyz9zwiqhqr99rtnx5ph',
+    'https://www.myvi.top/embed/ayuepb1gx8ew9x191pcgad5goy',
+    'https://www.myvi.top/embed/o5ej9j85r5mrpdibrhq1wqq8wo',
+    'https://www.myvi.top/embed/d939bs5jw81r9xpbx91917fffo',
+    'https://www.myvi.top/embed/qyyoda7aqwyr8nsyzqf9yq7ony',
+    'https://www.myvi.top/embed/wxeircywrzuwunhqqr3kk6uoiw',
+    'https://video.sibnet.ru/shell.php?videoid=5043243',
+    'https://video.sibnet.ru/shell.php?videoid=5043244',
+    'https://video.sibnet.ru/shell.php?videoid=5043245',
+    'https://www.myvi.top/embed/jmujbe3ifeyr7ph1jr6bq7jqzy',
+    'https://www.myvi.top/embed/9puhpi83y6gwxcndibiunmsf7a',
+    'https://www.myvi.top/embed/8ufgdusx3kurpgpfqmwreuzfwy',
+    'https://www.myvi.top/embed/9yexw58etburufy397pk9kb9ja',
+    'https://www.myvi.top/embed/ch3tbcg89jgwjgcsxnmtpuuqsc',
+    'https://www.myvi.top/embed/rzgp1bfs8j7rumb8h3bx6wfh7o',
+    'https://www.myvi.top/embed/qinascju83hw8ro5xx8n9wjqxe',
+    'https://www.myvi.top/embed/nw6zspxkw5yr5m6ffsue745sgy',
+    'https://www.myvi.top/embed/xaa47rgqxrewpyx1t9iehx1nca',
+    'https://www.myvi.top/embed/zikomg3uft4rmn7nbrkxrpfa3y',
+    'https://www.myvi.top/embed/ww7b3sfnw4hr5juppneg4bip8e',
+    'https://www.myvi.top/embed/kzhn6m7wajfrufrbjomf1zko8e',
+    'https://www.myvi.top/embed/3yfpf3hratxwuc1fo9qarht3er',
+    'https://www.myvi.top/embed/fmdtfoahikswme838gxuij85wh',
+    'https://www.myvi.top/embed/fgidwsdcexuwdyhatcjkx76ppa',
+    'https://video.sibnet.ru/shell.php?videoid=4933359',
+    'https://www.myvi.top/embed/hryx9hf8q84rfpsda6dybrmf4c',
+    'https://www.myvi.top/embed/ex1nwc683zdr5fgr5qp3xseyqh',
+    'https://www.myvi.top/embed/6cimpc3fdx3rtecewhp5dk1tjy',
+    'https://www.myvi.top/embed/zaatqswubjdw3ydshyciif8u5a',
+    'https://www.myvi.top/embed/3o9refmbpbjw8maixz6rthjdfw',
+    'https://www.myvi.top/embed/d4n1kuazj3srtppdoe3utazd5e',
+    'https://www.myvi.top/embed/6f7oa87f655w3y475ngsnb5q8o',
+    'https://www.myvi.top/embed/zary4hwp7permjytqzxzhpztfh',
+    'https://www.myvi.top/embed/yhmhadw6fuhwzkbe9ainmyfscr',
+    'https://www.myvi.top/embed/4u618nasjj3w3e71uu8gk7txmw',
+    'https://www.myvi.top/embed/zretjnu3s4cr3earcbskkkeosw',
+    'https://video.sibnet.ru/shell.php?videoid=5043246',
+    'https://www.myvi.top/embed/jyphfu6o855r8mpszygzfsd68y',
+    'https://www.myvi.top/embed/ijrahksbrqpwigftwrz4b56kfw',
+    'https://www.myvi.top/embed/y9p58fr49b6wffy11k7dwanu5o',
+    'https://www.myvi.top/embed/heaxh75pt9drtxk6h3x7wyf5mc',
+    'https://www.myvi.top/embed/k4maayacb38wjgxreseonrfyaa',
+    'https://www.myvi.top/embed/94jffyy7gtww5cq9iopj35uynw',
+    'https://video.sibnet.ru/shell.php?videoid=5043248',
+    'https://video.sibnet.ru/shell.php?videoid=5043249',
+    'https://video.sibnet.ru/shell.php?videoid=5043250',
+    'https://video.sibnet.ru/shell.php?videoid=5043251',
+    'https://www.myvi.top/embed/pspeizbn1sswdxn4o9519g11je',
+    'https://www.myvi.top/embed/6ysrzoc43rcwzgaz8zkknqop3a',
+    'https://www.myvi.top/embed/paiaao1sac3rjykmeycsaikdww',
+    'https://video.sibnet.ru/shell.php?videoid=5093807',
+    'https://www.myvi.top/embed/sk9ynwmuxu7rjfpwxhspyhtezy',
+    'https://www.myvi.top/embed/bsz3dtkos3uwjdfxtfo8h7h9yo',
+    'https://www.myvi.top/embed/4ofoigy3533wdctpwicfeisdco',
+    'https://video.sibnet.ru/shell.php?videoid=4933364',
+    'https://video.sibnet.ru/shell.php?videoid=4933367',
+    'https://www.myvi.top/embed/43fur8rjje5rpc64rofztt7p5e',
+    'https://www.myvi.top/embed/rqdngirmw6drfphwjtqj48gnar',
+    'https://www.myvi.top/embed/wuz3gxrhusywmx1a481bm1bs6r',
+    'https://www.myvi.top/embed/858nnugwi6wr9y41uppcpra18r',
+    'https://www.myvi.top/embed/xncnscsgkt9rbkexf4huezf81h',
+    'https://www.myvi.top/embed/8ksg9uf9cu8wdxmcadizp1pj1c',
+    'https://www.myvi.top/embed/9jwq33cyc98rpqg94bi3yc4oke',
+    'https://www.myvi.top/embed/awqrwd8ghchwxb539x8htt75zh',
+    'https://video.sibnet.ru/shell.php?videoid=4933372',
+    'https://www.myvi.top/embed/uhpfzfu485ewjxqcjebruuteah',
+    'https://www.myvi.top/embed/rchqa3g8tmsrzjdg9jujsbrsay',
+    'https://www.myvi.top/embed/g1w84urao7hr78wa5apeu8pxth',
+    'https://video.sibnet.ru/shell.php?videoid=5062148',
+    'https://www.myvi.top/embed/ardpehsszprw5ydwdrj7i36sgw',
+    'https://www.myvi.top/embed/xsx3tqru4hgric9j7uyp1bryxe',
+    'https://video.sibnet.ru/shell.php?videoid=5099001',
+    'https://www.myvi.top/embed/7xkkp38rm7zr9y1o8fm1m53heh',
+    'https://www.myvi.top/embed/yzgcp1wk7ocrz86edbyikcot8r',
+    'https://www.myvi.top/embed/9yx6sqy7hquw9yuouts7b41qby',
+    'https://www.myvi.top/embed/dxpzpipy8qcwty3gosizjkceac',
+    'https://www.myvi.top/embed/jw4cqb4w1g8r989twkgqbtzw6a',
+    'https://www.myvi.top/embed/sxhm5pibmqbw8yd5f9nx5dwh9h',
+    'https://www.myvi.top/embed/3743imusxxmr8nrtokk693og9a',
+    'https://www.myvi.top/embed/a5fo85a8ei5wdms6ctbuc551fc',
+    'https://www.myvi.top/embed/eu7kye3qex6wt8r1eqx1ut6iqh',
+    'https://video.sibnet.ru/shell.php?videoid=4933378',
+    'https://video.sibnet.ru/shell.php?videoid=4933380',
+    'https://www.myvi.top/embed/xdmdjduwhbdw78h9tkx5uijkte',
+    'https://www.myvi.top/embed/pcisqx1gtnsrjyr8qxsrzere1o',
+    'https://www.myvi.top/embed/r3nuqznq6aww5fchuo4gsxbcgr',
+    'https://www.myvi.top/embed/g9zp3hi4xoewxqrr1mgkscr8ge',
+    'https://www.myvi.top/embed/hzhdnzug66fwdeygqh99rfckto',
+    'https://www.myvi.top/embed/8wprkc77rj7w9mmmdsucfiy37w',
+    'https://www.myvi.top/embed/ikodmwjs5aerpmbp1exushybsy',
+    'https://www.myvi.top/embed/bbinzkfuafhwpxtfntnggy7faw',
+    'https://www.myvi.top/embed/hd8yr5w1wqcwxma484y1yhehcc',
+    'https://www.myvi.top/embed/msdjgazoww7wiqkxdnxk6ni43a',
+    'https://www.myvi.top/embed/aoxtno6nuszr9yji9d9gbdwtaa',
+    'https://www.myvi.top/embed/a4re5wsg3jzwxyzq834wnnmj7y',
+    'https://www.myvi.top/embed/6d6icsetr9wr3meybsm4mppt8y',
+    'https://video.sibnet.ru/shell.php?videoid=4933385',
+    'https://www.myvi.top/embed/sfmqx8mjbu3wiqztaj619axa3r',
+    'https://www.myvi.top/embed/c4bucs7tfd1rzmmqui6fqok74o',
+    'https://www.myvi.top/embed/m41d1i3w8btr3nzrbys8ycubce',
+    'https://www.myvi.top/embed/cxajrcs9rc4r5ydn3rtpsa8y1e',
+    'https://www.myvi.top/embed/q38qpbxkkktr9yo3nohkjmmr1o',
+    'https://www.myvi.top/embed/68gdunwyjudwuk3upk1i7c3hra',
+    'https://video.sibnet.ru/shell.php?videoid=4754877',
+    'https://video.sibnet.ru/shell.php?videoid=4754878',
+    
+                      
+  
+  ];
+  
+  var currentIndex = 0;
+  
+  function changeVideoLink() {
+    var videoLink = videoLinks[currentIndex];
+    $('#video_EP').attr('src', videoLink);
+  }
+  
+  function updateEpisodeSelect() {
+    $('#selection_EP').empty();
+    for (var i = 0; i < videoLinks.length; i++) {
+      var episodeOption = $('<option>').attr('value', i).text('Épisode ' + (i + 1));
+      $('#selection_EP').append(episodeOption);
+    }
+    $('#selection_EP').val(currentIndex);
+  }
+  
+  $('#SUIVANT').click(function(){
+    currentIndex = (currentIndex + 1) % videoLinks.length;
+    changeVideoLink();
+    updateEpisodeSelect();
+  });
+  
+  $('#PRECEDENT').click(function(){
+    if (currentIndex > 0) {
+      currentIndex = (currentIndex - 1) % videoLinks.length;
+      changeVideoLink();
+      updateEpisodeSelect();
+    }
+  });
+  
+  $('#selection_EP').change(function(){
+    currentIndex = parseInt($(this).val());
+    changeVideoLink();
+  });
+  
+  // Initial setup
+  changeVideoLink();
+  updateEpisodeSelect();
+});
+</script>
+
+
+		  
+        
+        <p id="phrase_grise">Un problème sur les vidéos ? Changez de lecteur (sinon consultez <a id="lien_bleu" href="lien_page.html">la page aide</a> ).</p>
+        <p id="Dernier_EP_S">Dernier épisode selectionné: épisode 1</p>
+        <h1 id="Boruto_détails">Naruto Shippuden</h1>
+        <h2 id="avec_fillers">AVEC FILLERS</h2>
+        <img id="drapeau_france" src="images/France.png" alt="drapeau france"/>
+        <h3 id="VF">VF</h3>
+        
+         <footer id="footer_EP">
+		      <div>
+			      <ul class="menu_footer">
+				      <li><a href="index.html">Accueil</a></li>
+				      <li><a href="Catégories.html">Catégories</a></li>
+				      <li><a href="Blog.html">Blog</a></li>
+				      <li><a href="Contact.html">Contact</a></li>
+				      <li><a href="Connexion.html">Connexion</a></li>
+	          </ul>
+          </div>
+
+
+          
+        
+      
+	        <a href="index.html"><h1 class="icon-expand_less" ></h1></a>
+	  
+	        <a class="logo_footer" href="index.html"><img src="images/logo.png" alt="logo de la page"/></a>
+		
+		    </footer>
+		    
+		</body>
+	</html>
